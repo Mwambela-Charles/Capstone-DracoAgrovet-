@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DracoAgrovet Market</title>
+    <link rel="stylesheet" href="validation/css/styl.css">
+   <style>
+    body{
+        background-image: url("validation/images/seedling.jpg");
+    }
+   </style> 
+</head>
+<body>
+
+<header class="Homepage">
+    <h1>DracoAgrovet Market</h1>
+    <p>Fresh agricultural products from local farmers</p>
+    <div class="menu">
+        <ol>
+            <li><a href="capstone.html">Home</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="register.html">Register</a></li>
+            <li><a href="privacy.html">Privacy Policy</a></li>
+        </ol>
+    </div>
+    
+</header>
+   
+
+<!-- PRODUCT SECTION -->
+<section>
+    <h2>Available Products</h2>
+
+    <input type="text" id="search" placeholder="Search products..." onkeyup="filterProducts()">
+
+    <div class="products" id="productList">
+        <div class="card">Tomatoes – KES 100/kg</div>
+        <div class="card">Maize – KES 3000/bag</div>
+        <div class="card">Bananas – KES 80/bunch</div>
+        <div class="card">Potatoes – KES 120/kg</div>
+        <div class="card">Onions – KES 90/kg</div> 
+        <div class="card">Cabbage – KES 50/head
+        </div>
+    </div>
+</section>
+<div><p>we also deal in farm inputs that are of high quality and at buyer-friendly prices.</p>
+    <a href="products.html">click here to view our farm inputs and machinery</a>
+</div>
+
+<!-- REGISTRATION FORM -->
+<section>
+    <h2>User Registration</h2>
+
+    <form onsubmit="return validateForm()"><legend>Register</legend>
+        <label>Name:</label>
+        <input type="text" id="name">
+
+        <label>Email:</label>
+        <input type="email" id="email">
+        <span class="error" id="error">phone number</span><input type="text"required pattern="\d{10}" title="Please enter a valid 10-digit phone number" id="phone">
+
+        <button type="submit">Register</button>
+    </form>
+
+    <p id="message"></p>
+</section>
+
+<footer>
+    
+         <div id="contact">
+            <h3>Contact Us</h3>
+            <p>Email: info@dracoagrovet.com</p>
+        </div>
+        <div id="social">
+            <h3>Follow Us</h3>
+            <p>Facebook | Twitter | Instagram</p>
+        </div>
+        <div><a href="privacy.html">Privacy Policy</a></div>    
+        <p>&copy; 2024 DracoAgrovet Market. All rights reserved.</p>
+
+    
+</footer>
+
+<script>
+    // SEARCH / FILTER FUNCTION
+    function filterProducts() {
+        let input = document.getElementById("search").value.toLowerCase();
+        let products = document.getElementById("productList").children;
+
+        for (let i = 0; i < products.length; i++) {
+            let text = products[i].innerText.toLowerCase();
+            products[i].style.display = text.includes(input) ? "block" : "none";
+        }
+    }
+
+    // FORM VALIDATION
+    function validateForm() {
+        let name = document.getElementById("name").value.trim();
+        let email = document.getElementById("email").value.trim();
+        let message = document.getElementById("message");
+
+        if (name === "" || email === "") {
+            message.innerText = "All fields are required!";
+            message.style.color = "red";
+            return false;
+        }
+
+        // COOKIE CREATION
+        document.cookie = "username=" + name + "; max-age=86400";
+
+        message.innerText = "Registration successful. Cookie saved.";
+        message.style.color = "green";
+
+        return false; // prevent real submission (frontend only)
+    }
+</script>
+
+</body>
+</html>

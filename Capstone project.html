@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>DracoAgrovet Market</title>
+        <link rel="stylesheet" href="validation/css/styl.css">
+        <link rel="stylesheet" href="validation/main.js">
+         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <style>
+            body{
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                background-image: url("validation/images/seedling.jpg");
+            }
+         </style>
+    </head>
+    <body>
+        <header class="Homepage">
+            
+            <div id="logo">
+                <h1>Welcome to DracoAgrovet Market</h1>
+                <p> Your global produce market where buyers and sellers connect to trade Fresh agricultural products from local farmers</p>
+            </div>
+            <div class="menu">
+                <ol>
+                    <li><a href="capstone.html">Home</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="register.html">Register</a></li>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                </ol>
+            </div>
+
+        </header><br><br>
+        <section>
+            <h2>User registration</h2>
+            <form onsubmit="return validateForm()"><fieldset><legend>Register</legend>
+                <label>Name:</label>
+                <input type="text" id="name">
+
+                <label>Email:</label>
+                <input type="email" id="email">
+                <span class="error" id="error">phone number</span><input type="text"required pattern="\d{10}" title="Please enter a valid 10-digit phone number" id="phone">
+                <button type="submit">Submit</button>
+                </fieldset>
+            </form>
+        </section>
+        <div id="message"></div>
+        <section>
+            <h2>Search for products</h2>
+            <input type="text" id="search" onkeyup="filterProducts()" placeholder="Search for products...">
+            <div id="productList">
+                <div>Fertilizer: 
+                    <a href="products.html"><img src="validation/images/npk.jpg" alt="NPK Fertilizer" style="width:100px;height:100px;"></a>
+                </div>
+                <div> Calcium:
+                   <a href="products.html"><img src="validation/images/calcium.jpg" alt="Calcium Fertilizer" width="100px" height="100px"></a>
+                </div>
+                <div>Maize:
+                    <img src="validation/maize.jpg" alt="Maize Seeds" width="100px" height="100px"></div>
+                <div>Seeds: Beans
+                    <img src="validation/beans.jpg" width="100px" height="100px">
+                </div>
+                <div>vegetable:
+                    <a href="products.html"><img src="validation/vegs.jpg" alt="Vegetable Seeds" width="100px" height="100px"></a>
+                </div>
+            </div>
+        <footer>
+            <div id="contact">
+                <h3>Contact Us</h3>
+                <p>Email: info@dracoagrovet.com</p>
+            </div>
+            <div id="social">
+                <h3>Follow Us</h3>
+                <p>Facebook | Twitter | Instagram</p>
+            </div>
+            <div><a href="privacy.html">Privacy Policy</a></div>
+            <p>&copy; 2024 DracoAgrovet Market. All rights reserved.</p>
+        </footer>
+        <script>
+    // SEARCH / FILTER FUNCTION
+    function filterProducts() {
+        let input = document.getElementById("search").value.toLowerCase();
+        let products = document.getElementById("productList").children;
+
+        for (let i = 0; i < products.length; i++) {
+            let text = products[i].innerText.toLowerCase();
+            products[i].style.display = text.includes(input) ? "block" : "none";
+        }
+    }
+
+    // FORM VALIDATION
+    function validateForm() {
+        let name = document.getElementById("name").value.trim();
+        let email = document.getElementById("email").value.trim();
+        let message = document.getElementById("message");
+
+        if (name === "" || email === "") {
+            message.innerText = "All fields are required!";
+            message.style.color = "red";
+            return false;
+        }
+
+        // COOKIE CREATION
+        document.cookie = "username=" + name + "; max-age=86400";
+
+        message.innerText = "Registration successful. Cookie saved.";
+        message.style.color = "green";
+
+        return false; // prevent real submission (frontend only)
+    }
+</script>
+    </body>
